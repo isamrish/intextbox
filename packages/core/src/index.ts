@@ -1,5 +1,2 @@
-const intextbox = () => {
-  return "intextbox";
-};
-
-export default intextbox;
+import Agent from "./agent";
+export { Agent };
