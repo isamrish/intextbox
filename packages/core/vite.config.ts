@@ -3,7 +3,12 @@ import dts from "vite-plugin-dts";
 import nodeResolve from "@rollup/plugin-node-resolve";
 
 export default defineConfig({
-  plugins: [dts(), nodeResolve()],
+  plugins: [
+    dts({
+      outDir: "dist/types",
+    }),
+    nodeResolve(),
+  ],
   build: {
     lib: {
       entry: "src/index.ts",
