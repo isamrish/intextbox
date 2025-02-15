@@ -1,19 +1,17 @@
 "use client";
 import { useState } from "react";
-import { Agent } from "@intextbox/core";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
+import { rephrase } from "@/actions";
 export default function Home() {
   const [prompt, setPrompt] = useState("");
-  const agent = new Agent(process.env.NEXT_PUBLIC_GEMINI_API_KEY || "");
 
   const handleRephrase = async () => {
-    const response = await agent.rephrase(prompt);
-    const result = response?.parts[0]?.text;
-    if (result) {
-      setPrompt(result);
+    const response = await rephrase(prompt);
+    console.log(response, "response handleRephrase");
+    if (response) {
+      setPrompt(response);
     }
   };
 
