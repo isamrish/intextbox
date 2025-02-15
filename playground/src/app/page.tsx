@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Agent } from "../../../packages/core";
+import { Agent } from "@intextbox/core";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

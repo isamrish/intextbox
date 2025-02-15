@@ -35,6 +35,9 @@ importers:
 
   playground:
     dependencies:
+      '@intextbox/core':
+        specifier: ^0.0.1
+        version: 0.0.1
       '@radix-ui/react-slot':
         specifier: ^1.1.2
         version: 1.1.2(@types/react@19.0.8)(react@19.0.0)
@@ -432,6 +435,9 @@ packages:
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [win32]
+
+  '@intextbox/core@0.0.1':
+    resolution: {integrity: sha512-fd7Lkd1aX3rWpH3VssY7BYwP4NNQHVjHMre4woPOOwyRO3zOzmx5ovP4xRmVX0Zy2XvvYi6nsPDd5fx9lERafA==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -2703,6 +2709,12 @@ snapshots:
 
   '@img/sharp-win32-x64@0.33.5':
     optional: true
+
+  '@intextbox/core@0.0.1':
+    dependencies:
+      '@types/dotenv': 8.2.3
+      '@types/node': 22.13.4
+      dotenv: 16.4.7
 
   '@isaacs/cliui@8.0.2':
     dependencies:
