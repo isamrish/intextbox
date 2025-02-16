@@ -7,6 +7,10 @@
   "author": "Amrish Kushwaha <askmaurya48@gmail.com> (https://github.com/isamrish)",
   "license": "MIT",
   "packageManager": "pnpm@9.14.2",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo check-types build"
+  },
   "devDependencies": {
     "turbo": "^2.4.2"
   }
