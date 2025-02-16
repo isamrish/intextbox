@@ -17,7 +17,8 @@
     }
   },
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "check-types": "tsc --noEmit"
   },
   "keywords": [],
   "author": "Amrish Kushwaha <askmaurya48@gmail.com> (https://github.com/isamrish)",
