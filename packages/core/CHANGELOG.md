@@ -1,5 +1,11 @@
 # @intextbox/core
 
+## 0.1.2
+
+### Patch Changes
+
+- chore: bump version to v0.1.2
+
 ## 0.1.1
 
 ### Patch Changes
