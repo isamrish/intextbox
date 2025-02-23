@@ -11,7 +11,12 @@
     "dev": "turbo dev",
     "build": "turbo check-types build"
   },
+  "workspaces": [
+    "packages/*",
+    "playground"
+  ],
   "devDependencies": {
+    "@types/node": "^22.13.5",
     "turbo": "^2.4.2"
   }
 }

@@ -1,10 +1,21 @@
 "use server";
 
-import { Agent } from "@intextbox/core";
+import { ContentRephraser, ContentSummarizer } from "@intextbox/core";
 
-const agent = new Agent(process.env.GEMINI_API_KEY || "");
+const contentRephraser = new ContentRephraser({
+  provider: "gemini",
+  apiKey: process.env.GEMINI_API_KEY || "",
+});
+
+const contentSummarizer = new ContentSummarizer({
+  provider: "gemini",
+  apiKey: process.env.GEMINI_API_KEY || "",
+});
 
 export async function rephrase(prompt: string) {
-  const response = await agent.rephrase(prompt);
-  return response?.parts[0]?.text;
+  return await contentRephraser.rephrase(prompt);
+}
+
+export async function summarize(prompt: string) {
+  return await contentSummarizer.summarize(prompt);
 }

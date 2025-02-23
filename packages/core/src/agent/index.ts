@@ -1,34 +1,72 @@
-import Model from "../model";
-
+import { basePrompt } from "./basePrompt";
+import { getModels } from "../model/models";
+import { BaseModel } from "../model/base";
+import { Provider } from "../types/model";
 class Agent {
-  public model: Model;
-  constructor(apiKey: string) {
-    this.model = new Model("gemini", apiKey);
+  public name: string;
+  private responsibility: string;
+  private taskDetails: string;
+  private model: BaseModel;
+  private agentConfig: any;
+
+  constructor({
+    name,
+    responsibility,
+    taskDetails,
+    config,
+    agentConfig,
+  }: {
+    name: string;
+    responsibility: string;
+    taskDetails: string;
+    config: {
+      provider: Provider;
+      apiKey: string;
+    };
+    agentConfig?: {
+      outputFormat?: string;
+      lengthConstraints?: string;
+      toneAndStyle?: string;
+    };
+  }) {
+    this.name = name;
+    this.responsibility = responsibility;
+    this.taskDetails = taskDetails;
+    this.model = getModels({
+      provider: config.provider,
+      apiKey: config.apiKey,
+    })!;
+    this.agentConfig = agentConfig || {};
   }
 
-  public async rephrase(prompt: string) {
-    const rephrasePrompt = `
-      Please rephrase this text in a more professional tone and give the answer without any explanation: ${prompt}
-    `;
-    return this.model.generateResponse(rephrasePrompt);
+  private preparePrompt({ content }: { content: string }) {
+    const _prompt = basePrompt({
+      agentName: this.name,
+      agentResponsibility: this.responsibility,
+      taskDetails: this.taskDetails,
+      content,
+      ...("outputFormat" in this.agentConfig
+        ? {
+            outputFormat: this.agentConfig.outputFormat,
+          }
+        : {}),
+      ...("lengthConstraints" in this.agentConfig
+        ? {
+            lengthConstraints: this.agentConfig.lengthConstraints,
+          }
+        : {}),
+      ...("toneAndStyle" in this.agentConfig
+        ? {
+            toneAndStyle: this.agentConfig.toneAndStyle,
+          }
+        : {}),
+    });
+    return _prompt;
   }
 
-  public async rephraseVariants(prompt: string) {
-    const rephrasePrompt = `
-        Please rephrase this text in a more professional tone and give the answer without any explanation and return 10 different variants in the following format:
-        - Variant 1:
-        - Variant 2:
-        - Variant 3:
-        - Variant 4:
-        - Variant 5:
-        - Variant 6:
-        - Variant 7:
-        - Variant 8:
-        - Variant 9:
-        - Variant 10:
-        Return only the variants, no other text : ${prompt}
-    `;
-    return this.model.generateResponse(rephrasePrompt);
+  public async getResponse({ content }: { content: string }) {
+    const prompt = this.preparePrompt({ content });
+    return await this.model.completeText(prompt);
   }
 }
 

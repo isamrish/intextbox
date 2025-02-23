@@ -1,2 +1,4 @@
 import Agent from "./agent";
-export { Agent };
+import ContentSummarizer from "./tools/content-summarizer";
+import ContentRephraser from "./tools/content-rephraser";
+export { Agent, ContentRephraser, ContentSummarizer };
