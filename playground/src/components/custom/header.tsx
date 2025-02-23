@@ -9,7 +9,7 @@ export const Header = () => {
           <span className="text-xl font-bold">InTextbox Playground</span>
         </div>
         <div>
-          <p>AI-powered text editor</p>
+          <p>AI-powered textbox</p>
         </div>
       </div>
     </div>
